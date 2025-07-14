@@ -16,3 +16,4 @@ build/
 Thumbs.db
 
 # Others (add more if needed)
+.vercel
