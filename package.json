@@ -1,0 +1,19 @@
+{
+  "name": "porto-next-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "pg": "^8.11.3",
+    "@vendia/serverless-express": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
