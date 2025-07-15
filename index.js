@@ -42,6 +42,26 @@ app.use(
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Root endpoint - API information
+app.get("/", (req, res) => {
+  res.status(200).json({ 
+    message: "Portfolio API - Natsrul Ulum",
+    version: "1.0.0",
+    status: "running",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    endpoints: {
+      health: "/health",
+      profile: "/api/profile",
+      projects: "/api/projects",
+      featuredProjects: "/api/projects/featured",
+      experiences: "/api/experiences",
+      education: "/api/education",
+      contact: "/api/contact (POST)"
+    }
+  });
+});
+
 // Health check endpoint
 app.get("/health", (req, res) => {
   res.status(200).json({ 
@@ -161,7 +181,17 @@ app.post("/api/contact", async (req, res) => {
 app.use("*", (req, res) => {
   res.status(404).json({ 
     error: "Not found", 
-    message: `Route ${req.originalUrl} not found` 
+    message: `Route ${req.originalUrl} not found`,
+    availableEndpoints: [
+      "GET /",
+      "GET /health", 
+      "GET /api/profile",
+      "GET /api/projects",
+      "GET /api/projects/featured",
+      "GET /api/experiences",
+      "GET /api/education",
+      "POST /api/contact"
+    ]
   });
 });
 
